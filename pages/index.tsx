@@ -5,13 +5,7 @@ import FlowButtons from '../components/FlowStructureButton';
 
 //import FunctionButtons from '../components/FunctionStructureButtons';
 
-import React, {
-  useState,
-  // useEffect,
-  // useReducer,
-  // useContext,
-  // createContext,
-} from 'react';
+import React, { useState } from 'react';
 
 import FunctionInventory from '../components/FunctionInventory';
 import FuncEditor from '../components/FuncEditor';
@@ -21,8 +15,19 @@ const Home = (): JSX.Element => {
   const [sequence, setSequence] = useState('');
   const [functions, setFunctions] = useState('');
   const [showEditor, setShowEditor] = useState(false);
-
+  const [funcToEdit, setFuncToEdit] = useState({
+    name: 'Name',
+    description: 'Description',
+    id: '',
+    definition: '',
+  });
   const [flowState, setflowState] = useState('');
+
+  const editFunc = (funcName) => {
+    alert('edit func!');
+    setFuncToEdit(funcName);
+  };
+
   const sequenceChange = (el) => {
     setSequence(el);
     setFunctions('');
@@ -63,6 +68,7 @@ const Home = (): JSX.Element => {
               onClick={functionsChange}
               functions={functions}
               toggleFuncEditor={toggleFuncEditor}
+              editFunc={editFunc}
             />
             {/* <FunctionButtons  onClick={functionsChange} functions={functions}/> */}
           </Col>
@@ -74,7 +80,11 @@ const Home = (): JSX.Element => {
             />
             <Execution compositionName={flowState.name} />
           </Col>
-          <FuncEditor show={showEditor} toggle={toggleFuncEditor} />
+          <FuncEditor
+            show={showEditor}
+            funcToEdit={funcToEdit}
+            toggle={toggleFuncEditor}
+          />
         </Row>
       </Container>
     </div>

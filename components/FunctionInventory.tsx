@@ -12,7 +12,7 @@ import { faEdit } from '@fortawesome/free-solid-svg-icons';
 
 const FunctionInventory = (props) => {
   const [currentFuncs, setFuncs] = useState({});
-  const [buttons, setButtons] = useState();
+  // const [buttons, setButtons] = useState();
 
   let funcs = [];
 
@@ -57,9 +57,7 @@ const FunctionInventory = (props) => {
           <span>{currentFuncs[func].name}</span>
         </OverlayTrigger>
         <FontAwesomeIcon
-          onClick={() => {
-            alert('Edit clicked!');
-          }}
+          onClick={props.toggleFuncEditor}
           icon={faEdit}
           className="icon float-right"
         />
